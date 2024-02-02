@@ -5,6 +5,7 @@ import java.util.ArrayList; //this exercise MUST use arrayList
 
 public class Lesson {
     public static void run() {
+        ArrayList<Shape> shapes = new ArrayList<>();
 
         //HINT1: usage arraylist with Shape class to store all of your shapes, check how to use arrayList by yourself
 
@@ -13,7 +14,12 @@ public class Lesson {
         Scanner in = new Scanner(System.in);
 
         do {
-            System.out.println();
+            System.out.println("\n1. Circle");
+            System.out.println("2. Rectangle");
+            System.out.println("3. Square");
+            System.out.println("4. Display all shapes");
+            System.out.println("5. Exit");
+            System.out.print("Please select [1-5]: ");
             //print menu as instructed in MD file
 
             String choice = in.nextLine().trim();
@@ -22,7 +28,8 @@ public class Lesson {
 
             if ("1".equals(choice)) {
                 System.out.print("Enter radius: ");
-                String strRadius = in.nextLine();
+                double radius = Double.parseDouble(in.nextLine());
+                shapes.add(new Circle(radius));
                 
                 //store to arrayList
             }
