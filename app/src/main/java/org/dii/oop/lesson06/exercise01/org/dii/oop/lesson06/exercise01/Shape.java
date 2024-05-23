@@ -1,31 +1,22 @@
 package org.dii.oop.lesson06.exercise01;
 
-public class Shape {
+public abstract class Shape {
     private String name;
-    private int numSides;
+    private int numSide;
 
-    public Shape(String name, int numSides) {
+    public Shape(String name, int numSide) {
         this.name = name;
-        this.numSides = numSides;
-    }
-
-    public Shape() {
-
+        this.numSide = numSide;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getNumSides() {
-        return numSides;
+    public int getNumSide() {
+        return numSide;
     }
 
-    public double getArea() {
-        return 0.0;
-    }
-
-    public double getPerimeter() {
-        return 0.0;
-    }
+    public abstract double getArea();
+    public abstract double getPerimeter();
 }

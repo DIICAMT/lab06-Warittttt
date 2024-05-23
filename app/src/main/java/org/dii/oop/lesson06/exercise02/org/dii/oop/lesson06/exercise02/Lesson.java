@@ -1,62 +1,64 @@
 package org.dii.oop.lesson06.exercise02;
 
-import org.dii.oop.lesson06.exercise01.Circle;
-import org.dii.oop.lesson06.exercise01.Rectangle;
-import org.dii.oop.lesson06.exercise01.Square;
-
 import java.util.Scanner;
-import java.util.ArrayList; //this exercise MUST use extended version of arrayList
 
 public class Lesson {
+    private static ShapeList shapes = new ShapeList();
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void run() {
-
-        CustomArrayList<Shape> shapes = new CustomArrayList<>();
-
-        Scanner in = new Scanner(System.in);
-
-        do {
-            System.out.println("\n1. Circle");
+        while (true) {
+            System.out.println("1. Circle");
             System.out.println("2. Rectangle");
             System.out.println("3. Square");
             System.out.println("4. Display all shapes");
             System.out.println("5. Show summation of area");
             System.out.println("6. Exit");
             System.out.print("Please select [1-6]: ");
+            int choice = scanner.nextInt();
 
-            String choice = in.nextLine().trim();
-            //interesting ops
-
-
-            if ("1".equals(choice)) {
-                System.out.print("Enter radius: ");
-                double radius = Double.parseDouble(in.nextLine());
-                shapes.add(new Circle(radius));
-            } else if ("2".equals(choice)) {
-                System.out.print("Enter width: ");
-                double width = Double.parseDouble(in.nextLine());
-                System.out.print("Enter height: ");
-                double height = Double.parseDouble(in.nextLine());
-                shapes.add(new Rectangle(width, height));
-            } else if ("3".equals(choice)) {
-                System.out.print("Enter side: ");
-                double side = Double.parseDouble(in.nextLine());
-                shapes.add(new Square(side));
-            } else if ("4".equals(choice)) {
-                System.out.println("List all shape:");
-                for (Shape shape : shapes) {
-                    System.out.println("Name: " + shape.getName() +
-                            ", Number of side: " + shape.getNumSides() +
-                            ", Area: " + shape.getArea() +
-                            ", Perimeter: " + shape.getPerimeter());
-                }
-            } else if ("5".equals(choice)) {
-                System.out.println("Summation of area is " + shapes.sumArea());
-            } else if ("6".equals(choice)) {
-                break;
+            switch (choice) {
+                case 1:
+                    addCircle();
+                    break;
+                case 2:
+                    addRectangle();
+                    break;
+                case 3:
+                    addSquare();
+                    break;
+                case 4:
+                    shapes.listAllShapes();
+                    break;
+                case 5:
+                    System.out.printf("Summation of area is %.2f%n", shapes.sumArea());
+                    break;
+                case 6:
+                    System.out.println("Exiting...");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please select again.");
             }
-           
-        } while(true);
+        }
+    }
 
-        in.close();
+    private static void addCircle() {
+        System.out.print("Enter radius: ");
+        double radius = scanner.nextDouble();
+        shapes.add(new Circle(radius));
+    }
+
+    private static void addRectangle() {
+        System.out.print("Enter width: ");
+        double width = scanner.nextDouble();
+        System.out.print("Enter height: ");
+        double height = scanner.nextDouble();
+        shapes.add(new Rectangle(width, height));
+    }
+
+    private static void addSquare() {
+        System.out.print("Enter side: ");
+        double side = scanner.nextDouble();
+        shapes.add(new Square(side));
     }
 }

@@ -1,4 +1,4 @@
-package org.dii.oop.lesson06.exercise01;
+package org.dii.oop.lesson06.exercise02;
 
 public class Circle extends Shape {
     private double radius;

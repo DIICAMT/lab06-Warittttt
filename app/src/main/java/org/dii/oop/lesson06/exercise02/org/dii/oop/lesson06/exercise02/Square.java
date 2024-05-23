@@ -1,4 +1,4 @@
-package org.dii.oop.lesson06.exercise01;
+package org.dii.oop.lesson06.exercise02;
 
 public class Square extends Rectangle {
     public Square(double side) {
@@ -10,5 +10,3 @@ public class Square extends Rectangle {
         return "Square";
     }
 }
-
-

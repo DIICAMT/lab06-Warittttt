@@ -1,76 +1,70 @@
 package org.dii.oop.lesson06.exercise01;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.ArrayList; //this exercise MUST use arrayList
 
 public class Lesson {
-    private static double side;
+    private static List<Shape> shapes = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void run() {
-        ArrayList<Shape> shapes = new ArrayList<>();
-
-        //HINT1: usage arraylist with Shape class to store all of your shapes, check how to use arrayList by yourself
-
-        //HINT2: you may want to declare your arrayList around here
-
-        Scanner scanner = new Scanner(System.in);
-
-        do {
-            System.out.println("\n1. Circle");
+        while (true) {
+            System.out.println("1. Circle");
             System.out.println("2. Rectangle");
             System.out.println("3. Square");
             System.out.println("4. Display all shapes");
             System.out.println("5. Exit");
             System.out.print("Please select [1-5]: ");
-            //print menu as instructed in MD file
+            int choice = scanner.nextInt();
 
-            String choice = scanner.nextLine().trim();
-
-            // TODO: write your code here
-
-            if ("1".equals(choice)) {
-                System.out.print("Enter radius: ");
-                double radius = Double.parseDouble(scanner.nextLine());
-                shapes.add(new Circle(radius));
-                
-                //store to arrayList
+            switch (choice) {
+                case 1:
+                    addCircle();
+                    break;
+                case 2:
+                    addRectangle();
+                    break;
+                case 3:
+                    addSquare();
+                    break;
+                case 4:
+                    displayAllShapes();
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please select again.");
             }
-            else if ("2".equals(choice)) {
-                System.out.print("Enter width: ");
-                double Width = Double.parseDouble(scanner.nextLine());
-                System.out.print("Enter height: ");
-                double Height = Double.parseDouble(scanner.nextLine());
-                
-                //store to arrayList
-            }
-            else if ("3".equals(choice)) {
-                System.out.print("Enter side: ");
-                double Side = Double.parseDouble(scanner.nextLine());
+        }
+    }
 
-                shapes.add(new Square(side));
-                //store to arrayList
-            }
-            else if ("4".equals(choice)) {
-                System.out.print("List all shape: ");
-                for (Shape shape : shapes) {
-                    System.out.println("Name: " + shape.getName() +
-                            ", Number of side: " + shape.getNumSides() +
-                            ", Area: " + shape.getArea() +
-                            ", Perimeter: " + shape.getPerimeter());
-                }
-                
-                //print data as instructed
-                //check how to iterate through arrayList
+    private static void addCircle() {
+        System.out.print("Enter radius: ");
+        double radius = scanner.nextDouble();
+        shapes.add(new Circle(radius));
+    }
 
-                //HINT3: you can use getClass() function of arrayList to get the name of class. It might be useful : )
-            }
-            if ("5".equals(choice)) {
-                System.out.println("Exiting the program. Goodbye!");
-                 break;
-            }
-           
-        } while(true);
+    private static void addRectangle() {
+        System.out.print("Enter width: ");
+        double width = scanner.nextDouble();
+        System.out.print("Enter height: ");
+        double height = scanner.nextDouble();
+        shapes.add(new Rectangle(width, height));
+    }
 
-        scanner.close();
+    private static void addSquare() {
+        System.out.print("Enter side: ");
+        double side = scanner.nextDouble();
+        shapes.add(new Square(side));
+    }
+
+    private static void displayAllShapes() {
+        System.out.println("List of all shapes:");
+        for (Shape shape : shapes) {
+            System.out.printf("Name: %s, Number of sides: %d, Area: %.2f, Perimeter: %.2f%n",
+                    shape.getName(), shape.getNumSide(), shape.getArea(), shape.getPerimeter());
+        }
     }
 }

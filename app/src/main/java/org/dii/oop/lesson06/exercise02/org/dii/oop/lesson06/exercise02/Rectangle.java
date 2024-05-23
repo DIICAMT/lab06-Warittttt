@@ -1,4 +1,4 @@
-package org.dii.oop.lesson06.exercise01;
+package org.dii.oop.lesson06.exercise02;
 
 public class Rectangle extends Shape {
     private double width;
@@ -28,3 +28,4 @@ public class Rectangle extends Shape {
         return height;
     }
 }
+
